@@ -1,37 +1,28 @@
 // Palindrome Checker Application
-// Use Case 9: Recursive Palindrome Checker
+// Use Case 10: Case-Insensitive & Space-Ignored Palindrome
 
 public class PalindromeCheckerApp {
 
-    // Recursive method to check palindrome
-    public static boolean isPalindrome(String word, int start, int end) {
-
-        // Base condition
-        if (start >= end) {
-            return true;
-        }
-
-        // Compare characters
-        if (word.charAt(start) != word.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return isPalindrome(word, start + 1, end - 1);
-    }
-
     public static void main(String[] args) {
 
-        String word = "level";
+        // Original string
+        String word = "A man a plan a canal Panama";
 
-        // Call recursive function
-        boolean result = isPalindrome(word, 0, word.length() - 1);
+        // Normalize string: remove spaces and convert to lowercase
+        String normalized = word.replaceAll("\\s+", "").toLowerCase();
 
-        // Print result
-        if (result) {
-            System.out.println("The word \"" + word + "\" is a Palindrome.");
+        // Reverse the normalized string
+        String reversed = "";
+
+        for (int i = normalized.length() - 1; i >= 0; i--) {
+            reversed = reversed + normalized.charAt(i);
+        }
+
+        // Check palindrome
+        if (normalized.equals(reversed)) {
+            System.out.println("The sentence \"" + word + "\" is a Palindrome (ignoring spaces and case).");
         } else {
-            System.out.println("The word \"" + word + "\" is NOT a Palindrome.");
+            System.out.println("The sentence \"" + word + "\" is NOT a Palindrome.");
         }
     }
 }
