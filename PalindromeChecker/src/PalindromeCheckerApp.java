@@ -1,28 +1,43 @@
 // Palindrome Checker Application
-// Use Case 10: Case-Insensitive & Space-Ignored Palindrome
+// Use Case 11: Object-Oriented Palindrome Service
+
+class PalindromeChecker {
+
+    // Method to check palindrome
+    public boolean checkPalindrome(String word) {
+
+        int start = 0;
+        int end = word.length() - 1;
+
+        while (start < end) {
+            if (word.charAt(start) != word.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+}
 
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // Original string
-        String word = "A man a plan a canal Panama";
+        String word = "madam";
 
-        // Normalize string: remove spaces and convert to lowercase
-        String normalized = word.replaceAll("\\s+", "").toLowerCase();
+        // Create object of PalindromeChecker
+        PalindromeChecker checker = new PalindromeChecker();
 
-        // Reverse the normalized string
-        String reversed = "";
+        // Call method
+        boolean result = checker.checkPalindrome(word);
 
-        for (int i = normalized.length() - 1; i >= 0; i--) {
-            reversed = reversed + normalized.charAt(i);
-        }
-
-        // Check palindrome
-        if (normalized.equals(reversed)) {
-            System.out.println("The sentence \"" + word + "\" is a Palindrome (ignoring spaces and case).");
+        // Display result
+        if (result) {
+            System.out.println("The word \"" + word + "\" is a Palindrome.");
         } else {
-            System.out.println("The sentence \"" + word + "\" is NOT a Palindrome.");
+            System.out.println("The word \"" + word + "\" is NOT a Palindrome.");
         }
     }
 }
